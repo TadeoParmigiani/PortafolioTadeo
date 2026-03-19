@@ -195,7 +195,7 @@ const rowVariants: Variants = {
             <motion.div key={cert.id} variants={rowVariants} className="group relative">
               {/* Row container */}
               <motion.div
-                className="flex items-center gap-6 py-6 px-4 relative border-b transition-all duration-300"
+                className="flex items-start md:items-center gap-4 md:gap-6 py-5 md:py-6 px-4 relative border-b transition-all duration-300"
                 style={{
                   borderColor: "rgba(42, 42, 42, 0.6)",
                 }}
@@ -212,7 +212,7 @@ const rowVariants: Variants = {
 
                 {/* Logo */}
                 <motion.div
-                  className="w-16 h-16 shrink-0 flex items-center justify-center relative"
+                  className="w-14 h-14 md:w-16 md:h-16 shrink-0 flex items-center justify-center relative"
                   style={{
                     background: "rgba(20, 20, 20, 0.8)",
                     border: "2px solid #2a2a2a",
@@ -225,7 +225,7 @@ const rowVariants: Variants = {
                   }}
                 >
                   {typeof cert.logo === "string" ? (
-                    <img src={cert.logo} alt="" className="w-8 h-8 object-contain" crossOrigin="anonymous" />
+                    <img src={cert.logo} alt="" className="w-7 h-7 md:w-8 md:h-8 object-contain" crossOrigin="anonymous" />
                   ) : (
                     <span className="text-[#ff9900]">{cert.logo}</span>
                   )}
@@ -238,9 +238,9 @@ const rowVariants: Variants = {
                 </motion.div>
 
                 {/* Title */}
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 pr-1">
                   <h3
-                    className="text-lg md:text-xl truncate group-hover:text-[#e8e4dc] transition-colors"
+                    className="text-base leading-snug md:text-xl md:truncate group-hover:text-[#e8e4dc] transition-colors"
                     style={{
                       fontFamily: "var(--font-marker), 'Permanent Marker', cursive",
                       color: "#d4cfc4",
@@ -248,6 +248,33 @@ const rowVariants: Variants = {
                   >
                     {getTranslation(cert.titleKey, cert.titleFallback)}
                   </h3>
+
+                  {/* Issuer - Mobile */}
+                  <div className="md:hidden mt-1 flex items-center gap-1.5">
+                    <MapPin className="w-3 h-3 shrink-0" style={{ color: "#6b6b6b" }} />
+                    <span
+                      className="text-[11px] leading-tight"
+                      style={{
+                        color: "#6b6b6b",
+                        fontFamily: "var(--font-bebas), 'Bebas Neue', sans-serif",
+                        letterSpacing: "0.04em",
+                      }}
+                    >
+                      {getTranslation(cert.issuerKey, cert.issuerFallback)}
+                    </span>
+                  </div>
+
+                  {/* Date/Status - Mobile */}
+                  <span
+                    className="md:hidden mt-1 block text-xs"
+                    style={{
+                      color: "#6b6b6b",
+                      fontFamily: "var(--font-bebas), 'Bebas Neue', sans-serif",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {getTranslation(cert.dateKey, cert.dateFallback)}
+                  </span>
                 </div>
 
                 {/* Issuer with icon */}
@@ -266,7 +293,7 @@ const rowVariants: Variants = {
                 </div>
 
                 {/* Date/Status */}
-                <div className="shrink-0">
+                <div className="shrink-0 hidden md:block">
                   <span
                     className="text-sm px-3 py-1"
                     style={{
@@ -282,7 +309,7 @@ const rowVariants: Variants = {
                 {/* External link */}
                 <motion.a
                   href={cert.link}
-                  className="shrink-0 p-2 opacity-40 group-hover:opacity-100 transition-opacity"
+                  className="shrink-0 self-start md:self-auto mt-0.5 md:mt-0 p-2 opacity-40 group-hover:opacity-100 transition-opacity"
                   whileHover={{ scale: 1.2, color: "#c41e3a" }}
                   style={{ color: "#6b6b6b" }}
                   aria-label="View credential"

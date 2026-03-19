@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import { useLanguage } from "@/context/language-context";
 
 type LocalizedString = {
@@ -58,6 +59,7 @@ export function ProjectDetailsModal({ isOpen, onClose, project }: ProjectDetails
   const { language } = useLanguage();
   const labels = modalLabels[language];
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   const projectTitle = project?.title[language] ?? "";
   const projectKeyBase = project?.title.es ?? "project";
 
@@ -71,6 +73,11 @@ export function ProjectDetailsModal({ isOpen, onClose, project }: ProjectDetails
   useEffect(() => {
     setSelectedImageIndex(0);
   }, [project]);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -94,18 +101,19 @@ export function ProjectDetailsModal({ isOpen, onClose, project }: ProjectDetails
     };
   }, [isOpen, onClose]);
 
-  if (!project) {
+  if (!project || !isMounted) {
     return null;
   }
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-70 flex items-start justify-center bg-black/70 backdrop-blur-[2px] p-5"
+          className="fixed inset-0 flex items-start justify-center bg-black/70 backdrop-blur-[2px] p-3 pt-4 sm:p-5"
+          style={{ zIndex: 1000 }}
           onClick={onClose}
         >
           <motion.div
@@ -113,7 +121,7 @@ export function ProjectDetailsModal({ isOpen, onClose, project }: ProjectDetails
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="relative w-full max-w-3xl max-h-[95vh] overflow-y-auto border-2 border-border bg-card"
+            className="relative w-[calc(100vw-1.5rem)] max-w-3xl max-h-[92dvh] sm:max-h-[95vh] overflow-y-auto border-2 border-border bg-card"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -243,6 +251,7 @@ export function ProjectDetailsModal({ isOpen, onClose, project }: ProjectDetails
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

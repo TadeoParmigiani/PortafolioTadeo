@@ -112,33 +112,36 @@ export function EducationSection() {
           </div>
         </motion.div>
 
-        {/* Horizontal Timeline */}
+        {/* Timeline */}
         <div className="relative max-w-290 mx-auto">
           {/* Timeline Line with graffiti style */}
           <motion.div 
-            className="absolute top-16 left-0 right-0 h-1 bg-border"
+            className="absolute top-16 left-0 right-0 h-1 bg-border hidden md:block"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
             style={{ transformOrigin: "left" }}
           />
+
+          {/* Mobile vertical spine */}
+          <div className="absolute top-0 bottom-0 left-4 w-px bg-border/70 md:hidden" />
           
           {/* Drips from timeline */}
           <motion.div
             initial={{ height: 0 }}
             animate={{ height: 30 }}
             transition={{ delay: 1.2, duration: 0.5 }}
-            className="absolute top-16 left-1/4 w-0.5 bg-linear-to-b from-primary to-transparent rounded-b-full"
+            className="absolute top-16 left-1/4 w-0.5 bg-linear-to-b from-primary to-transparent rounded-b-full hidden md:block"
           />
           <motion.div
             initial={{ height: 0 }}
             animate={{ height: 20 }}
             transition={{ delay: 1.4, duration: 0.4 }}
-            className="absolute top-16 left-2/3 w-0.5 bg-linear-to-b from-muted-foreground/50 to-transparent rounded-b-full"
+            className="absolute top-16 left-2/3 w-0.5 bg-linear-to-b from-muted-foreground/50 to-transparent rounded-b-full hidden md:block"
           />
           
           {/* Timeline Items */}
-          <div className={`grid grid-cols-1 ${timelineColumnsClass} justify-center gap-6 md:gap-8`}>
+          <div className={`grid grid-cols-1 ${timelineColumnsClass} justify-center gap-6 md:gap-8 pl-10 md:pl-0`}>
             {education.map((edu, index) => (
               <motion.div
                 key={edu.institution.es}
@@ -147,6 +150,16 @@ export function EducationSection() {
                 transition={{ delay: 0.3 + index * 0.15, duration: 0.5 }}
                 className="relative group"
               >
+                {/* Timeline Dot - Mobile */}
+                <motion.div
+                  className="absolute -left-7 top-5 z-10 md:hidden"
+                  initial={{ scale: 0, rotate: -45 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.5 + index * 0.15, type: "spring" }}
+                >
+                  <div className="w-4 h-4 rotate-45 border-2 border-background bg-primary/80 transition-colors" />
+                </motion.div>
+
                 {/* Timeline Dot - X style */}
                 <motion.div
                   className="absolute top-14 left-1/2 -translate-x-1/2 z-10 hidden md:block"
@@ -159,7 +172,7 @@ export function EducationSection() {
 
                 {/* Content Card */}
                 <motion.div 
-                  className="relative mt-24 md:mt-28 bg-card border-2 border-border hover:border-primary/50 transition-colors p-5 pb-12"
+                  className="relative mt-8 md:mt-28 bg-card border-2 border-border hover:border-primary/50 transition-colors p-5 pb-12"
                   whileHover={{ y: -5, rotate: index === 1 ? 1 : -1 }}
                 >
                   {/* Period & Status */}
@@ -206,9 +219,6 @@ export function EducationSection() {
                   {/* Corner accent */}
                   <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                 </motion.div>
-
-                {/* Connecting line (mobile) */}
-                <div className="absolute top-0 left-4 w-px h-24 bg-linear-to-b from-transparent via-border to-transparent md:hidden" />
               </motion.div>
             ))}
           </div>
