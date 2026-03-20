@@ -70,7 +70,7 @@ function PortfolioContent() {
   useEffect(() => {
     const timer = window.setTimeout(() => {
       setIsLoading(false);
-    }, 3300);
+    }, 4000);
 
     return () => {
       window.clearTimeout(timer);
@@ -164,7 +164,7 @@ function PortfolioContent() {
                     className="h-full bg-primary"
                     initial={{ width: "0%" }}
                     animate={{ width: "100%" }}
-                    transition={{ duration: 2.05, ease: "easeInOut" }}
+                    transition={{ duration: 3.55, ease: "easeInOut" }}
                   />
                 </motion.div>
 
