@@ -256,7 +256,7 @@ function PortfolioContent() {
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="fixed top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20"
               >
-                <span className="text-[10rem] font-(--font-marker) text-primary/80 uppercase select-none whitespace-nowrap">
+                <span className="text-[3rem] sm:text-[5rem] md:text-[7rem] lg:text-[10rem] font-(--font-marker) text-primary/80 uppercase select-none whitespace-nowrap">
                   {activeSection}
                 </span>
               </motion.div>
