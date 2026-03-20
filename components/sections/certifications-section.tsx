@@ -51,7 +51,7 @@ const certifications: Certification[] = [
     issuerFallback: "Language Institute",
     dateFallback: "2024",
     logo: <Languages size={40} className="text-[#7fb3ff]" strokeWidth={1.75} />,
-    link: "#",
+    link: "https://www.instagram.com/eclanguagesolutions/",
   },
   {
     id: 4,
