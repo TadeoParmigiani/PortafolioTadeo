@@ -12,6 +12,16 @@ import { ExperienceSection } from "@/components/sections/experience-section";
 import { EducationSection } from "@/components/sections/education-section";
 import { CertificationsSection } from "@/components/sections/certifications-section";
 
+type CursorParticle = {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  dx: number;
+  dy: number;
+  duration: number;
+};
+
 type Section =
   | "hero"
   | "about"
@@ -62,6 +72,83 @@ const sections: Section[] = [
   "certifications",
 ];
 
+function UrbanCursorTrail() {
+  const [particles, setParticles] = useState<CursorParticle[]>([]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const canUseFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (!canUseFinePointer) return;
+
+    let idCounter = 0;
+    let lastSpawn = 0;
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const now = performance.now();
+      if (now - lastSpawn < 22) return;
+      lastSpawn = now;
+
+      const particle: CursorParticle = {
+        id: idCounter++,
+        x: event.clientX,
+        y: event.clientY,
+        size: 4 + Math.random() * 8,
+        dx: (Math.random() - 0.5) * 26,
+        dy: (Math.random() - 0.5) * 26,
+        duration: 0.35 + Math.random() * 0.35,
+      };
+
+      setParticles((prev) => {
+        const next = [...prev, particle];
+        return next.length > 45 ? next.slice(next.length - 45) : next;
+      });
+
+      window.setTimeout(() => {
+        setParticles((prev) => prev.filter((item) => item.id !== particle.id));
+      }, 800);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <div className="pointer-events-none fixed inset-0 z-70 hidden md:block">
+      {particles.map((particle) => (
+        <motion.span
+          key={particle.id}
+          initial={{
+            x: particle.x,
+            y: particle.y,
+            scale: 1,
+            opacity: 0.9,
+          }}
+          animate={{
+            x: particle.x + particle.dx,
+            y: particle.y + particle.dy,
+            scale: 0.35,
+            opacity: 0,
+          }}
+          transition={{
+            duration: particle.duration,
+            ease: "easeOut",
+          }}
+          className="absolute rounded-full bg-red-600"
+          style={{
+            width: particle.size,
+            height: particle.size,
+            boxShadow: "0 0 10px rgba(220, 38, 38, 0.7)",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function PortfolioContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState<Section>("hero");
@@ -107,6 +194,7 @@ function PortfolioContent() {
 
   return (
     <div className="min-h-screen bg-background concrete-bg relative overflow-x-visible overflow-y-hidden">
+      <UrbanCursorTrail />
       <AnimatePresence mode="wait">
         {isLoading ? (
           <motion.div
