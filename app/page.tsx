@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { LanguageProvider } from "@/context/language-context";
 import { NavigationPanel } from "@/components/navigation-panel";
@@ -63,8 +63,19 @@ const sections: Section[] = [
 ];
 
 function PortfolioContent() {
+  const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState<Section>("hero");
   const [direction, setDirection] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setIsLoading(false);
+    }, 3300);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, []);
 
   const handleSectionChange = (newSection: Section) => {
     const currentIndex = sections.indexOf(activeSection);
@@ -96,74 +107,166 @@ function PortfolioContent() {
 
   return (
     <div className="min-h-screen bg-background concrete-bg relative overflow-x-visible overflow-y-hidden">
-      {/* Noise overlay for concrete texture */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' /%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Graffiti corner splashes */}
-      <div className="fixed top-0 left-0 w-96 h-96 pointer-events-none z-0">
-        <div className="absolute top-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-[100px] transform -translate-x-1/2 -translate-y-1/2" />
-      </div>
-
-      <div className="fixed bottom-0 right-60 w-64 h-64 pointer-events-none z-0">
-        <div className="absolute bottom-0 right-0 w-48 h-48 bg-muted/20 rounded-full blur-[80px] transform translate-x-1/3 translate-y-1/3" />
-      </div>
-
-      {/* Vertical drip lines decoration */}
-      <div className="fixed top-0 left-1/4 w-px h-40 from-primary/20 to-transparent pointer-events-none z-0" />
-      <div className="fixed top-0 left-2/3 w-0.5 h-24 from-muted-foreground/10 to-transparent pointer-events-none z-0" />
-
-      {/* Main content area */}
-      <main className="mr-16 relative z-10 min-h-screen"
-
->
-        <AnimatePresence mode="wait" custom={direction}>
+      <AnimatePresence mode="wait">
+        {isLoading ? (
           <motion.div
-            key={activeSection}
-            custom={direction}
-            variants={sectionVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="min-h-screen"
+            key="graffiti-loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.45 } }}
+            className="fixed inset-0 z-50 bg-background concrete-bg overflow-hidden"
           >
-            {renderSection()}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.06]"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' /%3E%3C/svg%3E")`,
+              }}
+            />
+
+            <motion.div
+              className="absolute -top-20 -left-16 w-72 h-72 rounded-full bg-primary/25 blur-[90px]"
+              initial={{ scale: 0.7, opacity: 0.2 }}
+              animate={{ scale: [0.75, 1, 0.9], opacity: [0.2, 0.5, 0.35] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute -bottom-20 right-8 w-80 h-80 rounded-full bg-muted/30 blur-[110px]"
+              initial={{ scale: 0.7, opacity: 0.15 }}
+              animate={{ scale: [0.8, 1.05, 0.9], opacity: [0.15, 0.35, 0.2] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+            />
+
+            <div className="relative z-10 flex min-h-screen items-center justify-center px-6">
+              <div className="relative text-center">
+                <motion.span
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45 }}
+                  className="block text-xs tracking-[0.4em] text-muted-foreground uppercase mb-4"
+                >
+                  Street Portfolio
+                </motion.span>
+
+                <motion.h1
+                  initial={{ opacity: 0, scale: 1.2, rotate: -8 }}
+                  animate={{ opacity: 1, scale: [1.12, 1], rotate: [-8, -2, 0] }}
+                  transition={{ duration: 0.75, ease: "easeOut" }}
+                  className="text-6xl sm:text-8xl md:text-9xl font-(--font-marker) uppercase text-primary leading-none drop-shadow-[0_0_18px_rgba(190,40,40,0.45)]"
+                >
+                  Loading
+                </motion.h1>
+
+                <motion.div
+                  className="mt-6 h-1 w-56 sm:w-72 bg-muted/50 overflow-hidden mx-auto"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <motion.div
+                    className="h-full bg-primary"
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 2.05, ease: "easeInOut" }}
+                  />
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.35 }}
+                  className="mt-4 flex items-center justify-center gap-2"
+                >
+                  {[0, 1, 2].map((dot) => (
+                    <motion.span
+                      key={dot}
+                      className="h-2.5 w-2.5 rounded-full bg-primary"
+                      animate={{ y: [0, -8, 0], opacity: [0.35, 1, 0.35] }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: dot * 0.12,
+                      }}
+                    />
+                  ))}
+                </motion.div>
+              </div>
+            </div>
           </motion.div>
-        </AnimatePresence>
-      </main>
+        ) : (
+          <motion.div
+            key="portfolio-content"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
+            {/* Noise overlay for concrete texture */}
+            <div
+              className="fixed inset-0 pointer-events-none z-0 opacity-[0.04]"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' /%3E%3C/svg%3E")`,
+              }}
+            />
 
-      {/* Navigation Panel */}
-      <NavigationPanel
-        activeSection={activeSection}
-        onSectionChange={handleSectionChange}
-      />
+            {/* Graffiti corner splashes */}
+            <div className="fixed top-0 left-0 w-96 h-96 pointer-events-none z-0">
+              <div className="absolute top-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-[100px] transform -translate-x-1/2 -translate-y-1/2" />
+            </div>
 
-      {/* Tag animation on section change - Graffiti style */}
-      <AnimatePresence>
-        <motion.div
-          key={`tag-${activeSection}`}
-          initial={{ opacity: 0.5, scale: 3, rotate: -25, y: -50 }}
-          animate={{ 
-            opacity: [0, 0.15, 0], 
-            scale: [3, 1.5, 1.2], 
-            rotate: [-25, -10, 0],
-            y: [-50, 0, 20]
-          }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="fixed top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20"
-        >
-          <span className="text-[10rem] font-(--font-marker) text-primary/80 uppercase select-none whitespace-nowrap">
-            {activeSection}
-          </span>
-        </motion.div>
+            <div className="fixed bottom-0 right-60 w-64 h-64 pointer-events-none z-0">
+              <div className="absolute bottom-0 right-0 w-48 h-48 bg-muted/20 rounded-full blur-[80px] transform translate-x-1/3 translate-y-1/3" />
+            </div>
+
+            {/* Vertical drip lines decoration */}
+            <div className="fixed top-0 left-1/4 w-px h-40 from-primary/20 to-transparent pointer-events-none z-0" />
+            <div className="fixed top-0 left-2/3 w-0.5 h-24 from-muted-foreground/10 to-transparent pointer-events-none z-0" />
+
+            {/* Main content area */}
+            <main className="mr-16 relative z-10 min-h-screen">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={activeSection}
+                  custom={direction}
+                  variants={sectionVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="min-h-screen"
+                >
+                  {renderSection()}
+                </motion.div>
+              </AnimatePresence>
+            </main>
+
+            {/* Navigation Panel */}
+            <NavigationPanel
+              activeSection={activeSection}
+              onSectionChange={handleSectionChange}
+            />
+
+            {/* Tag animation on section change - Graffiti style */}
+            <AnimatePresence>
+              <motion.div
+                key={`tag-${activeSection}`}
+                initial={{ opacity: 0.5, scale: 3, rotate: -25, y: -50 }}
+                animate={{
+                  opacity: [0, 0.15, 0],
+                  scale: [3, 1.5, 1.2],
+                  rotate: [-25, -10, 0],
+                  y: [-50, 0, 20],
+                }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="fixed top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20"
+              >
+                <span className="text-[10rem] font-(--font-marker) text-primary/80 uppercase select-none whitespace-nowrap">
+                  {activeSection}
+                </span>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Red accent line at bottom */}
+            <div className="fixed bottom-0 left-0 right-16 h-1 bg-linear-to-r from-primary via-primary/50 to-transparent pointer-events-none z-30" />
+          </motion.div>
+        )}
       </AnimatePresence>
-
-      {/* Red accent line at bottom */}
-      <div className="fixed bottom-0 left-0 right-16 h-1 bg-linear-to-r from-primary via-primary/50 to-transparent pointer-events-none z-30" />
     </div>
   );
 }
