@@ -7,15 +7,15 @@ import { GraffitiBackground } from "@/components/graffiti-background";
 const experiences = [
   {
     role: {
-      en: "Desarrollador de software",
-      es: "Software developer",
+      es: "Desarrollador de software",
+      en: "Software developer",
     },
     company: "OrbitDev",
     period: "2025",
     endPeriod: null,
     description: {
-      en: "Emprendimiento personal orientado al desarrollo de software a medida para clientes, enfocado en fortalecer mis habilidades como desarrollador, con especial atención a la gestión de bases de datos y la aplicación de buenas prácticas para garantizar un código limpio y eficiente.",
-      es: "Personal venture focused on developing custom software for clients, aimed at strengthening my skills as a developer, with special attention to database management and applying best practices to ensure clean and efficient code.",
+      es: "Emprendimiento personal orientado al desarrollo de software a medida para clientes, enfocado en fortalecer mis habilidades como desarrollador, con especial atención a la gestión de bases de datos y la aplicación de buenas prácticas para garantizar un código limpio y eficiente.",
+      en: "Personal venture focused on developing custom software for clients, aimed at strengthening my skills as a developer, with special attention to database management and applying best practices to ensure clean and efficient code.",
     },
   },
 ];

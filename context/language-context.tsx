@@ -121,8 +121,8 @@ const translations: Record<Language, Translations> = {
       title: "Certifications",
       cert1: {
         title: "CCNA v7: Introduction to Networks",
-        issuer: "Fundación Proydesa",
-        date: "En curso",
+        issuer: "Proydesa Foundation",
+        date: "In progress",
       },
       cert2: {
         title: "AWS Cloud Practitioner Essentia",
@@ -130,13 +130,13 @@ const translations: Record<Language, Translations> = {
         date: "2026",
       },
       cert3: {
-        title: "Instituto de Inglés",
+        title: "English Language Course",
         issuer: "Lic. Erica Clark | EC Language Solutions",
-        date: "En curso",
+        date: "In progress",
       },
       cert4: {
         title: "Codo a Codo 4.0 – Full Stack Python",
-        issuer: "Gobierno de la Ciudad de Buenos Aires",
+        issuer: "Government of the City of Buenos Aires",
         date: "2024",
       },
     },
@@ -191,8 +191,8 @@ const translations: Record<Language, Translations> = {
       title: "Certificaciones",
       cert1: {
         title: "CCNA v7: Introduction to Networks",
-        issuer: "Proydesa Foundation",
-        date: "In progress",
+        issuer: "Fundación Proydesa",
+        date: "En curso",
       },
       cert2: {
         title: "AWS Cloud Practitioner Essentia",
@@ -200,15 +200,16 @@ const translations: Record<Language, Translations> = {
         date: "2026",
       },
       cert3: {
-        title: "English Language Course",
+        title: "Instituto de Inglés",
         issuer: "Lic. Erica Clark | EC Language Solutions",
-        date: "In progress",
+        date: "En curso",
       },
       cert4: {
         title: "Codo a Codo 4.0 – Full Stack Python",
-        issuer: "Government of the City of Buenos Aires",
+        issuer: "Gobierno de la Ciudad de Buenos Aires",
         date: "2024",
       },
+
     },
   },
 };

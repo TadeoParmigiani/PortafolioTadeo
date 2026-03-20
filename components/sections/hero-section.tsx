@@ -284,7 +284,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
               className="flex flex-wrap gap-3"
             >
               <motion.a
-                href="https://github.com/TadeoParmi"
+                href="https://github.com/TadeoParmigiani"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, rotate: -2 }}
