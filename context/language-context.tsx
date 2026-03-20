@@ -155,7 +155,7 @@ const translations: Record<Language, Translations> = {
       greeting: "Tadeo Parmigiani",
       role: "Estudiante de Ingenieria en Sistemas",
       location: "Rosario, Santa Fe, Argentina",
-      description: "Apasionado por el desarrollo de software y la infraestructura tecnologica, con solidos conocimientos en bases de datos y diseno de sistemas eficientes y escalables.",
+      description: "Apasionado por el desarrollo de software y la infraestructura tecnologica, con solidos conocimientos en bases de datos y diseño de sistemas eficientes y escalables.",
       downloadCV: "Descargar CV",
       viewProjects: "Ver Proyectos",
     },
