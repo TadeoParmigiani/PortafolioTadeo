@@ -144,7 +144,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         </motion.div>
       </div>
 
-      <div className="relative z-10 px-8 md:px-16 lg:px-80 w-full max-w-8xl ml-auto">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-10 lg:px-14 xl:px-16 2xl:px-20">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16">
           {/* Profile Photo with graffiti frame */}
           <motion.div

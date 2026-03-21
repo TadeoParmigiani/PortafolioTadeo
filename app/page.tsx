@@ -308,7 +308,7 @@ function PortfolioContent() {
             <div className="fixed top-0 left-2/3 w-0.5 h-24 from-muted-foreground/10 to-transparent pointer-events-none z-0" />
 
             {/* Main content area */}
-            <main className="mr-16 relative z-10 min-h-screen">
+            <main className="mr-16 md:mr-60 relative z-10 min-h-screen">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={activeSection}
@@ -351,7 +351,7 @@ function PortfolioContent() {
             </AnimatePresence>
 
             {/* Red accent line at bottom */}
-            <div className="fixed bottom-0 left-0 right-16 h-1 bg-linear-to-r from-primary via-primary/50 to-transparent pointer-events-none z-30" />
+            <div className="fixed bottom-0 left-0 right-16 md:right-60 h-1 bg-linear-to-r from-primary via-primary/50 to-transparent pointer-events-none z-30" />
           </motion.div>
         )}
       </AnimatePresence>
