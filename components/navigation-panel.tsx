@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/context/language-context";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Home,
   User,
@@ -45,8 +46,16 @@ export function NavigationPanel({
   activeSection,
   onSectionChange,
 }: NavigationPanelProps) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const isMobile = useIsMobile();
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const { language, setLanguage, t } = useLanguage();
+
+  useEffect(() => {
+    // Desktop always expanded. Mobile starts collapsed.
+    setIsCollapsed(isMobile);
+  }, [isMobile]);
+
+  const isPanelCollapsed = isMobile ? isCollapsed : false;
 
   return (
     <motion.nav
@@ -57,7 +66,7 @@ export function NavigationPanel({
         "fixed right-0 top-0 h-screen z-50 flex flex-col",
         "bg-sidebar/95 backdrop-blur-md border-l-2 border-primary/30",
         "transition-all duration-300 ease-in-out",
-       isCollapsed ? "w-16" : "w-60"
+        isPanelCollapsed ? "w-16" : "w-60"
       )}
     >
       {/* Graffiti drip decoration */}
@@ -67,25 +76,27 @@ export function NavigationPanel({
         </svg>
       </div>
 
-      {/* Collapse toggle with X mark */}
-      <button
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/80 transition-colors z-10 rotate-45"
-        aria-label={isCollapsed ? "Expand navigation" : "Collapse navigation"}
-      >
-        <span className="-rotate-45">
-          {isCollapsed ? (
-            <ChevronLeft className="w-5 h-5" />
-          ) : (
-            <ChevronRight className="w-5 h-5" />
-          )}
-        </span>
-      </button>
+      {/* Collapse toggle only on mobile */}
+      {isMobile && (
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/80 transition-colors z-10 rotate-45"
+          aria-label={isPanelCollapsed ? "Expand navigation" : "Collapse navigation"}
+        >
+          <span className="-rotate-45">
+            {isPanelCollapsed ? (
+              <ChevronLeft className="w-5 h-5" />
+            ) : (
+              <ChevronRight className="w-5 h-5" />
+            )}
+          </span>
+        </button>
+      )}
 
       {/* Logo/Brand - Tag style */}
       <div className="pt-12 pb-8 px-4">
         <AnimatePresence mode="wait">
-          {!isCollapsed && (
+          {!isPanelCollapsed && (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -96,7 +107,7 @@ export function NavigationPanel({
             </motion.div>
           )}
         </AnimatePresence>
-        {isCollapsed && (
+        {isPanelCollapsed && (
           <div className=" text-3xl text-foreground text-center">
             P<span className="text-primary">.</span>
           </div>
@@ -122,19 +133,23 @@ export function NavigationPanel({
               className={cn(
                 "flex items-center gap-3 py-3 transition-all duration-200",
                 "relative overflow-hidden group",
-                isCollapsed
+                isPanelCollapsed
                   ? "w-10 justify-center px-0"
                   : "w-full max-w-55 mx-auto justify-start px-4",
                 isActive
                   ? "text-primary-foreground bg-primary"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
               )}
-              style={isActive ? { clipPath: "polygon(0 0, 100% 0, 95% 100%, 5% 100%)" } : {}}
+              style={
+                isActive
+                  ? { clipPath: "polygon(0 0, 100% 0, 95% 100%, 5% 100%)" }
+                  : {}
+              }
             >
               <Icon className={cn("w-5 h-5 relative z-10", isActive && "drop-shadow-lg")} />
 
               <AnimatePresence mode="wait">
-                {!isCollapsed && (
+                {!isPanelCollapsed && (
                   <motion.span
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -174,7 +189,7 @@ export function NavigationPanel({
         >
           <Languages className="w-4 h-4" />
           <AnimatePresence mode="wait">
-            {!isCollapsed && (
+            {!isPanelCollapsed && (
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
