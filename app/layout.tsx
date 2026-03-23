@@ -43,6 +43,8 @@ export const metadata: Metadata = {
     "argentina",
   ],
   authors: [{ name: "Tadeo Parmigiani" }],
+  verification: { google: "LIVS-4pe11AX1CLGEW_7aCNXzPzauMTuAZBuSAMiX2I",
+},
 };
 
 export const viewport: Viewport = {
