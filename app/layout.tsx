@@ -28,9 +28,12 @@ const permanentMarker = Permanent_Marker({
 export const metadata: Metadata = {
   title: "Tadeo Parmigiani | Ingenieria en Sistemas",
   description:
-    "Portfolio de Tadeo Parmigiani - Estudiante de Ingenieria en Sistemas | Desarrollador de Software",
+    "Portfolio de Tadeo Parmigiani - Estudiante Avanzado de Ingenieria en Sistemas",
   keywords: [
+    "infrastructura",
+    "soporteit",
     "developer",
+    "tadeo",
     "portfolio",
     "software",
     "frontend",

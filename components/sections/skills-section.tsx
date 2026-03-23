@@ -173,9 +173,9 @@ export function SkillsSection() {
                 <h3
                   className="text-2xl md:text-3xl uppercase"
                   style={{
-                    fontFamily: "cursive, 'Permanent Marker'",
+                    fontFamily: "sans-serif, var(--font-bebas), 'Bebas Neue'",
                     color: "#e8e4dc",
-                    textShadow: `2px 2px 0 ${accentColors[catIndex % accentColors.length]}`,
+                    textShadow: `1.5px 1.5px 0 ${accentColors[catIndex % accentColors.length]}`,
                   }}
                 >
                   {category.name}
