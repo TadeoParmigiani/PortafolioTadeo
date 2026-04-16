@@ -251,7 +251,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
             >
               {/* Download CV Button */}
               <motion.a
-                href="/pdf/Tad.pdf"
+                href="/pdf/CV-TadeoParmigiani.pdf"
                 download
                 whileHover={{ scale: 1.02, x: -2 }}
                 whileTap={{ scale: 0.98 }}
