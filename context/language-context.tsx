@@ -67,6 +67,11 @@ interface Translations {
       issuer: string;
       date: string;
     };
+    cert5: {
+      title: string;
+      issuer: string;
+      date: string;
+    };
   };
 }
 
@@ -139,6 +144,11 @@ const translations: Record<Language, Translations> = {
         issuer: "Government of the City of Buenos Aires",
         date: "2024",
       },
+      cert5: {
+        title: "Docker Essentials: A Developer Introduction",
+        issuer: "IBM",
+        date: "2026",
+      },
     },
   },
   es: {
@@ -209,7 +219,11 @@ const translations: Record<Language, Translations> = {
         issuer: "Gobierno de la Ciudad de Buenos Aires",
         date: "2024",
       },
-
+      cert5: {
+        title: "Docker Essentials: A Developer Introduction",
+        issuer: "IBM",
+        date: "2026",
+      },
     },
   },
 };

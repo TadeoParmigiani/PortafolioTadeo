@@ -64,6 +64,17 @@ const certifications: Certification[] = [
     logo: "https://cdn.simpleicons.org/python/3776ab",
     link: "/pdf/Diploma_CAC.pdf",
   },
+    {
+    id: 5,
+    titleKey: "certifications.cert5.title",
+    issuerKey: "certifications.cert5.issuer",
+    dateKey: "certifications.cert5.date",
+    titleFallback: "Docker Essentials: A Developer Introduction",
+    issuerFallback: "IBM",
+    dateFallback: "2026",
+    logo: "https://img.icons8.com/?size=100&id=31754&format=png&color=000000",
+    link: "https://www.credly.com/badges/0898d642-c99e-4842-8b5a-dbcc7241a504/linked_in_profile",
+  },
 ];
 
 export function CertificationsSection() {
