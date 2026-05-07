@@ -64,12 +64,12 @@ const projects = [
       en: "OIAT - International Organization of ITF Taekwon-Do Associations",
     },
     description: {
-      en: "Website + system for International Organization of Taekwon-Do ITF Associations (In development...)",
-      es: "Pagina + sistema para Organización Internacional Asociaciones de Taekwon-Do ITF (En desarrollo...)",
+      en: "Website and management system for OIAT, focused on member administration, tournaments, certifications, news, and international event organization.",
+      es: "Página web y sistema de gestión para OIAT, enfocado en la administración de miembros, torneos, certificaciones, noticias y organización de eventos internacionales.",
     },
     tech: ["React", "Node.js", "Express", "Mysql", "Tailwind CSS", "TypeScript"],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://www.oiat-taekwondo.com",
+    githubUrl: "https://github.com/TadeoParmigiani",
     showDetailsButton: true,
     details: {
       title: {
@@ -80,13 +80,13 @@ const projects = [
       tech: ["React", "Node.js", "Express", "MySQL", "Tailwind CSS", "TypeScript"],
       description: {
         es: [
-          "Estoy desarrollando la plataforma institucional para OIAT, una organización internacional de Taekwon-Do. El cliente necesitaba un sitio oficial para mostrar noticias, actividades y certificaciones, junto con un sistema interno para que los administradores gestionen el contenido.",
+          "Desarrolle la plataforma institucional para OIAT, una organización internacional de Taekwon-Do. El cliente necesitaba un sitio oficial para mostrar noticias, actividades y certificaciones, junto con un sistema interno para que los administradores gestionen el contenido.",
           "Comencé por el frontend, diseñando la interfaz y la estructura visual del sitio. Luego avancé al backend, donde estoy construyendo la lógica del sistema, la gestión de datos y las funciones internas. Más adelante voy a integrar ambas partes para unificar completamente el flujo entre el sitio público y el panel administrativo.",
           "El desarrollo lo realizo en comunicación directa con el cliente, realizando reuniones de levantamiento de requerimientos para comprender su estructura organizativa y los flujos de información. Con esa base armé un backlog priorizado y un roadmap iterativo. Trabajo con sprints cortos y entregas quincenales, presentando incrementos funcionales que el cliente revisa para dar feedback y ajustar requerimientos.",
           "Gracias a este enfoque ágil, con integración y entrega continua, el sistema evoluciona de forma incremental y se adapta exactamente a las necesidades reales de la institución.",
         ],
         en: [
-          "I am developing the institutional platform for OIAT, an international Taekwon-Do organization. The client needed an official website to showcase news, activities, and certifications, along with an internal system for administrators to manage content.",
+          "I developed the institutional platform for OIAT, an international Taekwon-Do organization. The client needed an official website to showcase news, activities, and certifications, along with an internal system for administrators to manage content.",
           "I started with the frontend, designing the interface and visual structure of the site. Then I moved on to the backend, where I am building the system logic, data management, and internal functions. Later I will integrate both parts to fully unify the flow between the public site and the administrative panel.",
           "The development is done in direct communication with the client, holding requirement gathering meetings to understand their organizational structure and information flows. Based on that, I created a prioritized backlog and an iterative roadmap. I work with short sprints and bi-weekly deliveries, presenting functional increments that the client reviews to provide feedback and adjust requirements.",
           "Thanks to this agile approach, with continuous integration and delivery, the system evolves incrementally and adapts exactly to the real needs of the institution.",
@@ -101,7 +101,7 @@ const projects = [
         en: ["Centralization of information — news, certifications, and authorities in a single place.", "Greater transparency — public and verifiable certificates that strengthen credibility.", "Administrative efficiency — less manual paperwork and lower margin of error.", "Agile communication — rapid dissemination of news and events to the entire community.", "International visibility — official presence of the institution to practitioners worldwide.", "Clear member identification — structured listing with official data and categories."],
       },
       links: [
-        { label: { es: "En desarrollo", en: "In development" } },
+        { label: { es: "Web — Live", en: "Web — Live" }, url: "https://www.oiat-taekwondo.com" },
       ],
     } as ProjectModalContent,
   },
