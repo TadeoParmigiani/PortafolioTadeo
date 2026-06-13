@@ -5,6 +5,20 @@ import { useLanguage } from "@/context/language-context";
 import { GraffitiBackground } from "@/components/graffiti-background";
 
 const experiences = [
+    {
+    role: {
+      es: "Help Desk",
+      en: "Help Desk",
+    },
+    company: "Neuralsoft",
+    companyUrl: "https://www.linkedin.com/company/neuralsoft/",
+    period: "2026",
+    endPeriod: null,
+    description: {
+      es: "Soporte funcional y atención a usuarios de Presea ERP, gestionando tickets, incidencias y consultas sobre los distintos módulos de la plataforma. Trabajo en conjunto con los equipos de desarrollo e infraestructura para el diagnóstico y resolución de problemas, asegurando la disponibilidad del servicio y la satisfacción de los clientes.",
+      en: "Functional support and user assistance for Presea ERP, managing tickets, issues, and queries related to various platform modules. Collaborating with development and infrastructure teams for problem diagnosis and resolution, ensuring service availability and customer satisfaction.",
+    },
+  },
   {
     role: {
       es: "Desarrollador de software",
@@ -17,20 +31,6 @@ const experiences = [
     description: {
       es: "Emprendimiento personal orientado al desarrollo de software a medida para clientes, enfocado en fortalecer mis habilidades como desarrollador, con especial atención a la gestión de bases de datos y la aplicación de buenas prácticas para garantizar un código limpio y eficiente.",
       en: "Personal venture focused on developing custom software for clients, aimed at strengthening my skills as a developer, with special attention to database management and applying best practices to ensure clean and efficient code.",
-    },
-  },
-  {
-    role: {
-      es: "Help Desk",
-      en: "Help Desk",
-    },
-    company: "Neuralsoft",
-    companyUrl: "https://www.linkedin.com/company/neuralsoft/",
-    period: "2026",
-    endPeriod: null,
-    description: {
-      es: "Soporte funcional y atención a usuarios de Presea ERP, gestionando tickets, incidencias y consultas sobre los distintos módulos de la plataforma. Trabajo en conjunto con los equipos de desarrollo e infraestructura para el diagnóstico y resolución de problemas, asegurando la disponibilidad del servicio y la satisfacción de los clientes.",
-      en: "Functional support and user assistance for Presea ERP, managing tickets, issues, and queries related to various platform modules. Collaborating with development and infrastructure teams for problem diagnosis and resolution, ensuring service availability and customer satisfaction.",
     },
   },
 ];
